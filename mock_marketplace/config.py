@@ -1,13 +1,3 @@
-# from dotenv import load_dotenv
-# import os
-
-# load_dotenv()
-
-# DB_HOST = os.environ.get("DB_HOST")
-# DB_PORT = os.environ.get("DB_PORT")
-# DB_USER = os.environ.get("DB_USER")
-# DB_NAME = os.environ.get("DB_NAME")
-# DB_PASS = os.environ.get("DB_PASS")
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -21,6 +11,16 @@ class Settings(BaseSettings):
     @property
     def DATABASE_URL_asyncpg(self):
         return f'postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}'
+
+
+    @property
+    def COOKIE_SECRET(self):
+        return 'h0bRQnm7IxHxhE6hjQb4iELE1UB6qrsXuq7z4kakiBgLeQ6njl'
+
+
+    @property
+    def MANAGER_SECRET(self):
+        return 'c1Nx1cYR4RGh43FDlCvxunopAIMkxwhSTIuLAyrusng8'
 
     model_config = SettingsConfigDict(env_file='.env')
 

@@ -13,7 +13,7 @@ class Base(DeclarativeBase): pass
 
 
 class Products(Base):
-    __tablename__ = 'products'
+    __tablename__ = 'product'
 
     id: Mapped[intpk]
     name: Mapped[str_256]
@@ -22,3 +22,4 @@ class Products(Base):
     discount: Mapped[int | None]
     quantity: Mapped[int] = mapped_column(nullable=False)
 
+ 

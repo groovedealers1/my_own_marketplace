@@ -1,2 +1,14 @@
 mock_marketplace/__pycache__
+mock_marketplace/config.py 
+
 mock_marketplace/src/posts/__pycache__
+mock_marketplace/src/auth/__pycache__
+mock_marketplace/src/routers/__pycache__
+
+mock_marketplace/alembic.ini
+mock_marketplace/alembic/__pycache__
+mock_marketplace/alembic/versions/__pycache__
+
+mock_marketplace/.env
+
+poetry.lock
