@@ -11,4 +11,5 @@ mock_marketplace/alembic/versions/__pycache__
 
 mock_marketplace/.env
 
+.idea
 poetry.lock

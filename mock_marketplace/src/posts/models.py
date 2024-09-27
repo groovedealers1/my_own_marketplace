@@ -1,12 +1,5 @@
-from sqlalchemy.orm import Mapped, mapped_column, relationship, DeclarativeBase
-from sqlalchemy import MetaData, ForeignKey, text, CheckConstraint, Index
-import enum
-import datetime
-from typing import Annotated, Optional
-
-
-str_256 = Annotated[str, 256]
-intpk = Annotated[int, mapped_column(primary_key=True)]
+from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
+from .database import intpk, str_256
 
 
 class Base(DeclarativeBase): pass
