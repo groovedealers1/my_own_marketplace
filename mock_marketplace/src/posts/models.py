@@ -14,5 +14,4 @@ class Products(Base):
     collection: Mapped[str_256 | None]
     discount: Mapped[int | None]
     quantity: Mapped[int] = mapped_column(nullable=False)
-
- 
+    name_for_image: Mapped[str_256] = mapped_column(nullable=False)

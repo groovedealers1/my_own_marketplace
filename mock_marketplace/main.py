@@ -6,6 +6,7 @@ from src.auth.database import User
 from src.routers.routers_cart_purchasing import router as purchasing_router
 from src.routers.routers_home_stuff_page import router as home_stuff_router
 from src.routers.routers_for_wears import router as wears_router
+from src.routers.admin_routers import router as admin_router
 
 from src.auth.auth import auth_backend
 from src.auth.manager import get_user_manager
@@ -18,6 +19,7 @@ fastapi_users = FastAPIUsers[User, int](
     [auth_backend],
 )
 
+app.include_router(router=admin_router)
 app.include_router(router=home_stuff_router)
 app.include_router(router=purchasing_router)
 app.include_router(router=wears_router)
