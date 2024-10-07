@@ -1,14 +1,13 @@
 import StuffCard from "./components/StuffCard.jsx";
-import {StrictMode} from "react";
+import ErrorBoundary from "antd/es/alert/ErrorBoundary.js";
 
 function App() {
 
+
   return (
-    <>
-        <StrictMode>
-            <StuffCard/>
-        </StrictMode>
-    </>
+      <ErrorBoundary fallback={<p>Something went wrong</p>}>
+          <StuffCard/>
+      </ErrorBoundary>
 
   )
 }

@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi_users import FastAPIUsers
+from fastapi.middleware.cors import CORSMiddleware
 
 from src.auth.database import User
 
@@ -12,7 +13,20 @@ from src.auth.auth import auth_backend
 from src.auth.manager import get_user_manager
 # from src.auth.schemas import UserRead, UserCreate
 
+origins = [
+    'http://localhost:5174',
+    'http://127.0.0.1:5174',
+]
+
 app = FastAPI(title='DAMN FUUUCK', version='0.1')
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 fastapi_users = FastAPIUsers[User, int](
     get_user_manager,

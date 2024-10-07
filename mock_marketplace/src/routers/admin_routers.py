@@ -6,7 +6,7 @@ from ..admin.admin_comands import insert_products
 router = APIRouter(tags=['insert wear in db'], prefix='/admin')
 
 
-@router.get('', response_class=HTMLResponse)
+@router.get('/insert_wear', response_class=HTMLResponse)
 async def all_wears(name: str, price: int, quantity: int, name_for_image: str, collection: str = None, discount: int = None):
     await insert_products(
         name=name,

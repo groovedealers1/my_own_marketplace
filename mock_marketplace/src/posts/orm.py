@@ -28,8 +28,12 @@ async def get_all_wears() -> list[dict[str, Any]]:
 
 async def get_wear_by_id(wear_id: int):
     async with engine.connect() as conn:
-        stmt = select(Products).where(Products.id == wear_id)
+        stmt = select(Products).where(wear_id == Products.id)
         res = await conn.execute(stmt)
-        result = list(res.all()[0])
 
-        return result
+        list_of_named = ["id", "name", "price", "collection", "discount", "quantity", "imageSrc"]
+
+        wear_data = res.all()[0]
+        wear_dict = {list_of_named[i]: wear_data[i] for i in range(len(wear_data))}
+
+        return wear_dict
