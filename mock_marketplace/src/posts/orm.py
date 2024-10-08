@@ -11,7 +11,6 @@ async def get_all_wears() -> list[dict[str, Any]]:
         stmt = select(Products)
         res = await conn.execute(stmt)
         result = res.all()
-        print(result)
 
         list_of_wears = []
         list_of_named = ["id", "name", "price", "collection", "discount", "quantity", "imageSrc"]

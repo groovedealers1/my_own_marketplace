@@ -7,18 +7,18 @@ from src.auth.database import User
 from src.routers.routers_cart_purchasing import router as purchasing_router
 from src.routers.routers_home_stuff_page import router as home_stuff_router
 from src.routers.routers_for_wears import router as wears_router
-from src.routers.admin_routers import router as admin_router
+from src.admin_routers import router as admin_router
 
 from src.auth.auth import auth_backend
 from src.auth.manager import get_user_manager
 # from src.auth.schemas import UserRead, UserCreate
 
 origins = [
-    'http://localhost:5174',
-    'http://127.0.0.1:5174',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
 ]
 
-app = FastAPI(title='DAMN FUUUCK', version='0.1')
+app = FastAPI(title='Own Online Market', version='0.1')
 
 app.add_middleware(
     CORSMiddleware,
