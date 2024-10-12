@@ -2,7 +2,7 @@
 
 ## Setup
 
-# Backend:
+### Backend:
 - python = "^3.12"
 - fastapi = "^0.112.2"
 - fastapi-users = {extras = ["sqlalchemy"], version = "^13.0.0"}
@@ -14,17 +14,17 @@
 - pydantic-settings = "^2.4.0"
 - passlib = "^1.7.4"
 
-# Frontend:
+## Frontend:
 - javascript
 - react
 - tailwindcss
 - vite
 
-# Database:
+## Database:
 - Postgresql
 - Redis
 
-# Web-server:
+### Web-server:
 - nginx
 - uvicorn (dev)
 - docker-compose
