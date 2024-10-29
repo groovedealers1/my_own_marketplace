@@ -1,15 +1,22 @@
-import StuffCard from "./components/StuffCard.jsx";
-import ErrorBoundary from "antd/es/alert/ErrorBoundary.js";
+import * as React from "react";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-function App() {
+import "./index.css";
+import HomePage from "./components/HomePage.jsx";
+import Card from "./components/Card.jsx";
 
 
-  return (
-      <ErrorBoundary fallback={<p>Something went wrong</p>}>
-          <StuffCard/>
-      </ErrorBoundary>
-
-  )
+function App(){
+    return (
+        <React.StrictMode>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<HomePage/>}/>
+                    <Route path="/wear/:id" element={<Card/>}/>
+                </Routes>
+            </BrowserRouter>
+        </React.StrictMode>
+    );
 }
 
-export default App
+export default App;
