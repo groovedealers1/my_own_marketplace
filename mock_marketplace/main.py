@@ -4,9 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from src.auth.database import User
 
-from src.routers.routers_cart_purchasing import router as purchasing_router
-from src.routers.routers_home_stuff_page import router as home_stuff_router
 from src.routers.routers_for_wears import router as wears_router
+from src.routers.routers_for_images import router as images_router
 from src.admin_routers import router as admin_router
 
 from src.auth.auth import auth_backend
@@ -34,9 +33,8 @@ fastapi_users = FastAPIUsers[User, int](
 )
 
 app.include_router(router=admin_router)
-app.include_router(router=home_stuff_router)
-app.include_router(router=purchasing_router)
 app.include_router(router=wears_router)
+app.include_router(router=images_router)
 app.include_router(
     fastapi_users.get_auth_router(auth_backend),
     prefix="/auth/jwt",

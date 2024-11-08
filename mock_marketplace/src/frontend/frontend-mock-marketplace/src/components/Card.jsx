@@ -1,6 +1,6 @@
 'use client'
 
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import { Radio, RadioGroup } from '@headlessui/react'
 import axios from "axios";
 
@@ -46,12 +46,12 @@ export default function Card () {
     const [selectedColor, setSelectedColor] = useState(product.colors[0])
     const [selectedSize, setSelectedSize] = useState(product.sizes[2])
 
-    const [wear, setWears] = useState([]);
-
+    const [wear, setWears] = useState({images: {name_for_image_1: ''}});
 
     const getWear = () => {
         axios.get('http://127.0.0.1:8000/wears/' + wearId).then(r => {
             const stuff = r.data;
+            console.log(stuff);
             setWears(stuff);
         })
     }
@@ -60,6 +60,7 @@ export default function Card () {
         getWear()
     }, []);
 
+
     return (
         <div className="bg-white">
             <div className="pt-6">
@@ -67,10 +68,11 @@ export default function Card () {
                 {/* Image gallery */}
                 <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
                     <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                        {/*{wear.map((image) => (*/}
                         <img
-                            alt={wear.imageAlt}
+                            alt='sorry we cant load the images'
                             // src={product.images[0].src}
-                            src={wear.imageSrc}
+                            src={'/images/' + wear.images.name_for_image_1}
                             className="h-full w-full object-cover object-center"
                         />
                     </div>
@@ -179,7 +181,7 @@ export default function Card () {
                             <h3 className="sr-only">Description</h3>
 
                             <div className="space-y-6">
-                                <p className="text-base text-gray-900">{product.description}</p>
+                                <p className="text-base text-gray-900">{wear.description}</p>
                             </div>
                         </div>
 
@@ -187,7 +189,7 @@ export default function Card () {
                             <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
                             <div className="mt-4 space-y-6">
-                                <p className="text-sm text-gray-600">{product.details}</p>
+                                <p className="text-sm text-gray-600">{wear.characteristics}</p>
                             </div>
                         </div>
                     </div>

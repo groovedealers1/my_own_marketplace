@@ -11,5 +11,5 @@ async def all_wears():
 
 
 @router.get('/{wear_id}')
-async def wear_by_id(wear_id: int = 2):
+async def wear_by_id(wear_id: int):
     return await get_wear_by_id(wear_id)

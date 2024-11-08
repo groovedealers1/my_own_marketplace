@@ -6,11 +6,12 @@ from typing import Annotated
 
 
 str_256 = Annotated[str, 256]
+str_1024 = Annotated[str, 1024]
 intpk = Annotated[int, mapped_column(primary_key=True)]
 
 
 engine = create_async_engine(
-    url=f'{settings.DATABASE_URL_asyncpg}',
+    url=settings.DATABASE_URL_asyncpg,
     echo=False
 )
 

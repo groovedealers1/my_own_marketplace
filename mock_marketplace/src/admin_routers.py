@@ -1,23 +1,28 @@
+from typing import Annotated
+
 from fastapi import APIRouter, File, UploadFile
 
 import pathlib
 
 from .admin.admin_comands import insert_products
 
+
+files = Annotated[list[bytes], File()]
 router = APIRouter(tags=['insert wear in db'], prefix='/admin')
 
 
 @router.post('/insert_wear')
-async def all_wears(name: str, price: int, quantity: int, name_for_image: str, collection: str = None, discount: int = None, file: UploadFile = File(...)):
+async def all_wears(name: str, price: int, quantity: int, files: list[UploadFile],
+                    description: str, characteristics: str, colors: str,
+                    collection: str = None, discount: int = None):
 
-    path_file = pathlib.Path(__file__).parent / 'frontend' / 'public' / 'images'
-    print(path_file)
+    path_file = pathlib.Path(__file__).parent / 'frontend' / 'frontend-mock-marketplace' / 'public' / 'images'
 
-    file.filename = f"{name_for_image}.jpg"
-    contents = await file.read()
+    for file in files:
+        content_file = await file.read()
 
-    with open(f"{path_file}/{file.filename}", "wb") as f:
-        f.write(contents)
+        with open(f"{path_file}/{file.filename}", "wb") as f:
+            f.write(content_file)
 
     await insert_products(
         name=name,
@@ -25,7 +30,13 @@ async def all_wears(name: str, price: int, quantity: int, name_for_image: str, c
         collection=collection,
         discount=discount,
         quantity=quantity,
-        name_for_image=f'./images/{name_for_image}.jpg',
+        description=description,
+        characteristics=characteristics,
+        colors=colors,
+
+        name_for_image_1=files[0].filename,
+        name_for_image_2=files[1].filename,
+        name_for_image_3=files[2].filename,
     )
 
-    return '<h1> success </h1>'
+    return f'<h1> You added: {[file.filename for file in files]} </h1>'
